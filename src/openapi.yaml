@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: My first API
+  version: 1.0.0
+  description: This is an example OpenAPI specification for demonstration purposes.
+servers:
+  - url: https://localhost:3000
+    description: Local development server
+paths:
+  /hello:
+    get:
+      summary: Hello world
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+  /goodbye:
+    get:
+      summary: Goodbye world
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoodbyeResponse'
+  /greet:
+    get:
+      summary: Greet the user
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A personalized greeting response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GreetResponse'
+
+components:
+  schemas:
+    HelloResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Hello, world!
+    GoodbyeResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Goodbye, world!
+    GreetResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Hello, {name}!
+        description:
+          type: string
+          example: This endpoint greets the user with their name.
