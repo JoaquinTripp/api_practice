@@ -50,6 +50,17 @@ app.get('/greet', (req, res) => {
   });
 });
 
+app.post('/users', (req, res) => {
+  const { name, age, email } = req.body;
+  const newUser = {
+    id: Date.now(),
+    name,
+    age,
+    email
+  };
+  res.status(201).json(newUser);
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
