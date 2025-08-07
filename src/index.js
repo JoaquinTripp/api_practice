@@ -29,12 +29,19 @@ app.use((err, req, res, next) => {
 });
 
 
-app.get('/hello', (req, res) => {
+app.get('/v1/hello', (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
 
+app.get('/v2/hello', (req, res) => {
+  res.json({ message: 'Hello, world!' , 
+    version: 'v2',
+    timestamp: new Date().toISOString()
+  });
+});
 
-app.get('/goodbye', (req, res) => {
+
+app.get('/v1/goodbye', (req, res) => {
   res.json({
     message: 'Goodbye, world!',
     description: 'This endpoint returns a farewell message.'
@@ -97,6 +104,38 @@ app.post('/users/:id', (req, res) => {
 });
 
 
+// Base de simulación para productos
+const products = [
+  {
+    id: 1,
+    name: 'Smartphone',
+    description: 'Latest model smartphone with advanced features.',
+    price: 699,
+    category: 'electronics',
+    tags: ['mobile', 'gadgets'],
+    inStock: true,
+    specifications: { color: 'black', memory: '128GB' },
+    ratings: [
+      { score: 5, comment: 'Excellent product!' },
+      { score: 4, comment: 'Very good, but a bit expensive.' }
+    ]
+  },
+  {
+    id: 2,
+    name: 'T-shirt',
+    description: '100% cotton, comfortable fit.',
+    price: 19,
+    category: 'clothing',
+    tags: ['fashion', 'summer'],
+    inStock: true,
+    specifications: { size: 'M', color: 'white' },
+    ratings: [
+      { score: 4, comment: 'Nice and comfy.' }
+    ]
+  }
+];
+
+// Crear un nuevo producto
 app.post('/products', (req, res) => {
   const {
     name,
@@ -109,7 +148,7 @@ app.post('/products', (req, res) => {
     ratings
   } = req.body;
 
-  // Validaciones básicas según el esquema
+  // Validaciones según el esquema Product
   if (
     typeof name !== 'string' || name.length < 2 || name.length > 100 ||
     typeof price !== 'number' || price < 0 || price % 0.01 !== 0 ||
@@ -140,9 +179,8 @@ app.post('/products', (req, res) => {
     }
   }
 
-  // Simulación de creación de producto
   const newProduct = {
-    id: Date.now(),
+    id: products.length ? products[products.length - 1].id + 1 : 1,
     name,
     description,
     price,
@@ -152,11 +190,93 @@ app.post('/products', (req, res) => {
     specifications,
     ratings
   };
-
+  products.push(newProduct);
   res.status(201).json(newProduct);
 });
 
+// Listar todos los productos
+app.get('/products', (req, res) => {
+  res.json(products);
+});
+
+// Obtener producto por ID
+app.get('/products/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const product = products.find(p => p.id === id);
+  if (!product) {
+    return res.status(404).json({ error: 'Product not found' });
+  }
+  res.json(product);
+});
+
+// Actualizar un producto por ID
+app.put('/products/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const {
+    name,
+    description,
+    price,
+    category,
+    tags,
+    inStock,
+    specifications,
+    ratings
+  } = req.body;
+
+  const productIndex = products.findIndex(p => p.id === id);
+  if (productIndex === -1) {
+    return res.status(404).json({ error: 'Product not found' });
+  }
+
+  // Validaciones según el esquema Product
+  if (
+    typeof name !== 'string' || name.length < 2 || name.length > 100 ||
+    typeof price !== 'number' || price < 0 || price % 0.01 !== 0 ||
+    !['electronics', 'clothing', 'books', 'home', 'beauty'].includes(category)
+  ) {
+    return res.status(400).json({ error: 'Invalid product data' });
+  }
+
+  if (description && description.length > 500) {
+    return res.status(400).json({ error: 'Description too long' });
+  }
+
+  if (tags && (!Array.isArray(tags) || tags.length < 1 || tags.some(tag => typeof tag !== 'string'))) {
+    return res.status(400).json({ error: 'Tags must be a non-empty array of strings' });
+  }
+
+  if (ratings && Array.isArray(ratings)) {
+    for (const rating of ratings) {
+      if (
+        typeof rating.score !== 'number' ||
+        rating.score < 1 ||
+        rating.score > 5 ||
+        typeof rating.comment !== 'string' ||
+        rating.comment.length > 500
+      ) {
+        return res.status(400).json({ error: 'Invalid rating data' });
+      }
+    }
+  }
+
+  // Actualizar el producto
+  const updatedProduct = {
+    id,
+    name,
+    description,
+    price,
+    category,
+    tags,
+    inStock,
+    specifications,
+    ratings
+  };
+  products[productIndex] = updatedProduct;
+  res.json(updatedProduct);
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
+  console.log(`http://localhost:${port}/v1`);
+  console.log(`http://localhost:${port}/v2`);
 });
