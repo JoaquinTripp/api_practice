@@ -2,7 +2,11 @@ openapi: 3.1.1
 info:
   title: FakeAPI store
   version: 1.0.1
-  description: This is an example OpenAPI specification for demonstration purposes.
+  description: |-
+    This is a sample FakeAPI Store Server based on the OpenAPI 3.X specification. You can find out more about Swagger at https://swagger.io. In the third iteration of the pet store, we've switched to the design first approach. You can now help us improve the API whether it's by making changes to the definition itself or to the code. That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+    
+    Some useful links:
+    - [The Fake Store repository](https://github.com/platzi/curso-apifirst)
   termsOfService: http://example.com/terms
   contact:
     name: API Support
@@ -32,21 +36,31 @@ components:
         message:
           type: string
           example: Hello, world!
+      example:
+        message: Hello, world!
+
     GoodbyeResponse:
       type: object
       properties:
         message:
           type: string
           example: Goodbye, world!
+      example:
+        message: Goodbye, world!
+
     GreetResponse:
       type: object
       properties:
         message:
           type: string
-          example: Hello, {name}!
+          example: Hello, Joaquin!
         description:
           type: string
           example: This endpoint greets the user with their name.
+      example:
+        message: Hello, Joaquin!
+        description: This endpoint greets the user with their name.
+
     User:
       type: object
       required:
@@ -57,36 +71,63 @@ components:
         name:
           type: string
           minLength: 2
+          example: Joaquin
         age:
           type: integer
           minimum: 18
+          example: 25
         email:
           type: string
           format: email
+          example: joaquin@example.com
+      example:
+        name: Joaquin
+        age: 25
+        email: joaquin@example.com
+
     UserResponse:
       type: object
       properties:
         id:
           type: integer
+          example: 1
         name:
           type: string
+          example: Joaquin
         age:
           type: integer
+          example: 25
         email:
           type: string
+          example: joaquin@example.com
+      example:
+        id: 1
+        name: Joaquin
+        age: 25
+        email: joaquin@example.com
+
     UserSearchResponse:
       type: object
       properties:
         id:
           type: integer
+          example: 1
         name:
           type: string
+          example: Joaquin
+      example:
+        id: 1
+        name: Joaquin
+
     ErrorResponse:
       type: object
       properties:
         error:
           type: string
           example: User not found
+      example:
+        error: User not found
+
     Product:
       type: object
       required:
@@ -98,27 +139,36 @@ components:
           type: string
           minLength: 2
           maxLength: 100
+          example: Smartphone
         description:
           type: string
           maxLength: 500
+          example: Latest model smartphone with advanced features.
         price:
           type: number
           minimum: 0
           multipleOf: 0.01
+          example: 699.99
         category:
           type: string
           enum: [electronics, clothing, books, home, beauty]
+          example: electronics
         tags:
           type: array
           items: 
             type: string
-            minItems: 1
+          minItems: 1
+          example: [mobile, gadgets]
         inStock:
           type: boolean
+          example: true
         specifications:
           type: object
           additionalProperties:
             type: string
+          example:
+            color: black
+            memory: 128GB
         ratings:
           type: array
           items:
@@ -130,9 +180,31 @@ components:
                 type: number
                 minimum: 1
                 maximum: 5
+                example: 5
               comment:
                 type: string
                 maxLength: 500
+                example: Excellent product!
+          example:
+            - score: 5
+              comment: Excellent product!
+            - score: 4
+              comment: Very good, but a bit expensive.
+      example:
+        name: Smartphone
+        description: Latest model smartphone with advanced features.
+        price: 699.99
+        category: electronics
+        tags: [mobile, gadgets]
+        inStock: true
+        specifications:
+          color: black
+          memory: 128GB
+        ratings:
+          - score: 5
+            comment: Excellent product!
+          - score: 4
+            comment: Very good, but a bit expensive.
 paths:
   /hello:
     get:
