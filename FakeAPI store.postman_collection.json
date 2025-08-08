@@ -1,0 +1,1103 @@
+{
+	"info": {
+		"_postman_id": "b44dc848-6aa5-46a0-adb0-22f5cfcff867",
+		"name": "FakeAPI store",
+		"description": "This is a sample FakeAPI Store Server based on the OpenAPI 3.X specification. You can find out more about Swagger at https://swagger.io. In the third iteration of the pet store, we've switched to the design first approach. You can now help us improve the API whether it's by making changes to the definition itself or to the code. That way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\nSome useful links:\n- [The Fake Store repository](https://github.com/platzi/curso-apifirst)\n\nContact Support:\n Name: API Support\n Email: support@example.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47434780"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"item": [
+				{
+					"name": "Hello world",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/hello",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "A successful response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/v1/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Hello, world!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "goodbye",
+			"item": [
+				{
+					"name": "Goodbye world",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/goodbye",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"goodbye"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "A successful response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/v1/goodbye",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"goodbye"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Goodbye, world!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "greet",
+			"item": [
+				{
+					"name": "Greet the user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/greet?name=string",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"greet"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "A personalized greeting response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/v1/greet?name=string",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"greet"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "string"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Hello, Joaquin!\",\n  \"description\": \"This endpoint greets the user with their name.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get user by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "9886",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "A successful response with user data",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3000/v1/users/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"v1",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1,\n  \"name\": \"Joaquin\"\n}"
+								},
+								{
+									"name": "User not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"User not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update user by ID",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "9886",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User updated successfully",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/v1/users/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"v1",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 1,\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}"
+								},
+								{
+									"name": "User not found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"User not found\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User created successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 1,\n  \"name\": \"Joaquin\",\n  \"age\": 25,\n  \"email\": \"joaquin@example.com\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get product by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "9886",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Product found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3000/v1/products/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"v1",
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Product not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"User not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update product by ID",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "9886",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Product updated successfully",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Invalid product data",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"User not found\"\n}"
+								},
+								{
+									"name": "Product not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error\": \"User not found\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create a new product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Product created successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Invalid product data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest model smartphone with advanced features.\",\n  \"price\": 699.99,\n  \"category\": \"electronics\",\n  \"tags\": [\n    \"mobile\",\n    \"gadgets\"\n  ],\n  \"inStock\": true,\n  \"specifications\": {\n    \"color\": \"black\",\n    \"memory\": \"128GB\"\n  },\n  \"ratings\": [\n    {\n      \"score\": 5,\n      \"comment\": \"Excellent product!\"\n    },\n    {\n      \"score\": 4,\n      \"comment\": \"Very good, but a bit expensive.\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": \"User not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List all products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List of products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"name\": \"Smartphone\",\n    \"description\": \"Latest model smartphone with advanced features.\",\n    \"price\": 699.99,\n    \"category\": \"electronics\",\n    \"tags\": [\n      \"mobile\",\n      \"gadgets\"\n    ],\n    \"inStock\": true,\n    \"specifications\": {\n      \"color\": \"black\",\n      \"memory\": \"128GB\"\n    },\n    \"ratings\": [\n      {\n        \"score\": 5,\n        \"comment\": \"Excellent product!\"\n      },\n      {\n        \"score\": 4,\n        \"comment\": \"Very good, but a bit expensive.\"\n      }\n    ]\n  },\n  {\n    \"name\": \"Smartphone\",\n    \"description\": \"Latest model smartphone with advanced features.\",\n    \"price\": 699.99,\n    \"category\": \"electronics\",\n    \"tags\": [\n      \"mobile\",\n      \"gadgets\"\n    ],\n    \"inStock\": true,\n    \"specifications\": {\n      \"color\": \"black\",\n      \"memory\": \"128GB\"\n    },\n    \"ratings\": [\n      {\n        \"score\": 5,\n        \"comment\": \"Excellent product!\"\n      },\n      {\n        \"score\": 4,\n        \"comment\": \"Very good, but a bit expensive.\"\n      }\n    ]\n  }\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://35434b02-0c4f-4143-a478-31c98483e84b.mock.pstmn.io/v1"
+		}
+	]
+}

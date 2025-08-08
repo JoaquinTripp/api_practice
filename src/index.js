@@ -2,6 +2,8 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const OpenApiValidator = require('express-openapi-validator');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'pistito';
 
 const app = express();
 const port = 3000;
@@ -10,6 +12,20 @@ const swaggerDocument = YAML.load('./src/openapi.yaml');
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
+
+function authenticateJWT(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) return res.sendStatus(403);
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+}
 
 app.use(
   OpenApiValidator.middleware({
@@ -29,7 +45,7 @@ app.use((err, req, res, next) => {
 });
 
 
-app.get('/v1/hello', (req, res) => {
+app.get('/v1/hello', authenticateJWT, (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
 
@@ -49,7 +65,7 @@ app.get('/v1/goodbye', (req, res) => {
 });
 
 
-app.get('/greet', (req, res) => {
+app.get('/v1/greet', (req, res) => {
   const name = req.query.name || 'stranger';
   res.json({
     message: `Hello, ${name}!`,
@@ -57,7 +73,7 @@ app.get('/greet', (req, res) => {
   });
 });
 
-app.post('/users', (req, res) => {
+app.post('/v1/users', (req, res) => {
   const { name, age, email } = req.body;
   const newUser = {
     id: Date.now(),
@@ -70,9 +86,27 @@ app.post('/users', (req, res) => {
 
 
 // Simulación de base de datos con un array
-const users = [{id: 1, name: 'Joaquin', age: 30, email: 'joaquintripp@example.com'}]; 
+const users = [{id: 1, name: 'Joaquin', age: 30, email: 'joaquintripp@example.com', password: '123456'}]; 
 
-app.get('/users/:id', (req, res) => {
+
+// Endpoint para autenticación
+app.post('/v1/auth/login', (req, res) => {
+  const { email, password } = req.body;
+  const user = users.find(u => u.email === email && u.password === password);
+  if (!user) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+  // Generar JWT
+  const token = jwt.sign(
+    { id: user.id, name: user.name, email: user.email },
+    SECRET_KEY,
+    { expiresIn: '1h' }
+  );
+  res.json({ token });
+});
+
+
+app.get('/v1/users/:id', (req, res) => {
   const userId = parseInt(req.params.id);
   const user = users.find(u => u.id === userId);
   if (!user) {
@@ -84,7 +118,7 @@ app.get('/users/:id', (req, res) => {
 });
 
 
-app.post('/users/:id', (req, res) => {
+app.post('/v1/users/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
   const { name, age, email } = req.body;
 
@@ -136,7 +170,7 @@ const products = [
 ];
 
 // Crear un nuevo producto
-app.post('/products', (req, res) => {
+app.post('/v1/products', (req, res) => {
   const {
     name,
     description,
@@ -195,12 +229,12 @@ app.post('/products', (req, res) => {
 });
 
 // Listar todos los productos
-app.get('/products', (req, res) => {
+app.get('/v1/products', (req, res) => {
   res.json(products);
 });
 
 // Obtener producto por ID
-app.get('/products/:id', (req, res) => {
+app.get('/v1/products/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
   const product = products.find(p => p.id === id);
   if (!product) {
@@ -210,7 +244,7 @@ app.get('/products/:id', (req, res) => {
 });
 
 // Actualizar un producto por ID
-app.put('/products/:id', (req, res) => {
+app.put('/v1/products/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
   const {
     name,

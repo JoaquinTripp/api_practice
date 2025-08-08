@@ -1,4 +1,4 @@
-openapi: 3.1.1
+openapi: 3.0.4
 info:
   title: FakeAPI store
   version: 1.0.1
@@ -38,7 +38,6 @@ components:
           example: Hello, world!
       example:
         message: Hello, world!
-
     GoodbyeResponse:
       type: object
       properties:
@@ -47,7 +46,6 @@ components:
           example: Goodbye, world!
       example:
         message: Goodbye, world!
-
     GreetResponse:
       type: object
       properties:
@@ -60,7 +58,6 @@ components:
       example:
         message: Hello, Joaquin!
         description: This endpoint greets the user with their name.
-
     User:
       type: object
       required:
@@ -84,7 +81,6 @@ components:
         name: Joaquin
         age: 25
         email: joaquin@example.com
-
     UserResponse:
       type: object
       properties:
@@ -105,7 +101,6 @@ components:
         name: Joaquin
         age: 25
         email: joaquin@example.com
-
     UserSearchResponse:
       type: object
       properties:
@@ -118,7 +113,6 @@ components:
       example:
         id: 1
         name: Joaquin
-
     ErrorResponse:
       type: object
       properties:
@@ -127,7 +121,6 @@ components:
           example: User not found
       example:
         error: User not found
-
     Product:
       type: object
       required:
@@ -205,7 +198,59 @@ components:
             comment: Excellent product!
           - score: 4
             comment: Very good, but a bit expensive.
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Use this security scheme to authenticate requests with a JWT token.
+        The token should be included in the `Authorization` header as follows:
+        ```
+        Authorization: Bearer <your_jwt_token>
+        ```
+security:
+  - JWT: []  
 paths:
+  /auth/login:
+    post:
+      tags:
+        - Users
+      summary: Authenticate user and get JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: joaquin@example.com
+                password:
+                  type: string
+                  example: 123456
+      responses:
+        '200':
+          description: JWT token returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /hello:
     get:
       summary: Hello world
